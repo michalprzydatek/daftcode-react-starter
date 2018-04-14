@@ -9,7 +9,7 @@ class Home extends React.Component {
   }
 
   state = {
-    welcomeText: 'Hello',
+    welcomeText: 'Hello'
   };
 
   render() {
