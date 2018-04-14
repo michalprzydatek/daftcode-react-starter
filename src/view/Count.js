@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 class Count extends React.Component {
   constructor(props){
     super(props);
 
-    const { from } = this.props;
+    const { from, to } = this.props;
 
-    this.state = { time: {}, seconds: from };
+    this.state = { time: {}, seconds: from, to: to };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
     this.countDown = this.countDown.bind(this);
@@ -45,7 +44,7 @@ class Count extends React.Component {
     });
 
     // Check if we're at zero.
-    if (seconds == 0) {
+    if (seconds == this.state.to) {
       alert('boom');
       clearInterval(this.timer);
     }
@@ -62,7 +61,6 @@ class Count extends React.Component {
   }
 
   render() {
-
     return (
       <div>
       {this.from}
