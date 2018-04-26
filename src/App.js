@@ -10,7 +10,7 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
     return (
       <main>
         <Home username="DaftCoder" />
-        <Count from={30} to={10} />
+        <Count from={60} to={0} />
 
       </main>
     );
