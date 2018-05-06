@@ -1,0 +1,98 @@
+@import "~styles/variables"  // '~' informs sass-loader that is not relative path
+
+.col-6
+	width: 50%
+	float: left
+
+.col-12
+	width: 100%
+	float: left
+
+.timer
+
+.rocket
+
+	.rocket__name
+		font-size: $header_big
+		letter-spacing: $header_big_ls
+
+section
+	margin-top: 40px
+	margin-bottom: 20px
+
+.section__title
+	font-size: $basic
+	text-transform: uppercase
+	color: $desert
+	border-bottom: 1px solid $desert
+	letter-spacing: $basic_ls
+	padding-bottom: 10px
+
+.section__desc
+	font-size: 14px
+	padding-top: 20px
+	overflow: overlay
+
+.section__desc__list
+	padding-left: 20px
+	padding-bottom: 20px
+	border-left: 1px dashed $cool-grey
+
+	.section__desc__list__name
+		color: $cool-grey
+		text-transform: uppercase
+
+	.section__desc__list__value
+		text-transform: uppercase
+		padding-left: 10px
+
+.section__desc_full
+	padding-top: 20px
+
+.links
+	background: url(../assets/rocket.png) top center
+	background-size: cover
+	font-size: 20px
+	color: #ffffff
+	width: 100%
+	height: auto
+	clear: both
+
+.links__title
+	padding-top: 450px
+	letter-spacing: 4px
+	text-transform: uppercase
+	font-size: $header_big
+	letter-spacing: $header_sml_ls
+
+.links__title--center
+	text-align: center
+
+.links__lists
+	padding-top: 50px
+	padding-bottom: 100px
+	margin-bottom: 100px
+	display: flex
+	flex-direction: row
+	justify-content: center
+
+	li
+		border: 1px solid #ffffff
+		border-radius: 30px
+		padding: 10px 40px
+		font-size: $basic
+    letter-spacing: $basic_ls
+		margin: 0 20px 0 0
+
+		&::hover
+			color: red
+			transfrom: translateY(-10px)
+      transition: all 1s
+
+		a
+			text-transform: uppercase
+			color: $white
+			text-decoration: none
+
+.links__list--no-list-style
+	list-style: none
