@@ -1,6 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-#content {
-  padding: 0 20px; }
+.content__left {
+  padding-left: 20px; }
+
+.content__right {
+  padding-right: 20px; }
 
 .col-6 {
   width: 50%;
