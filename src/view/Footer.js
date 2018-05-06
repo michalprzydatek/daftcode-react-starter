@@ -14,7 +14,7 @@ class Footer extends React.Component {
     return (
       <div id={"footer"}>
         <div className={"footer__menu"}>
-          <span>Follow spacex:</span>
+          <span>Follow spacex  &nbsp; &nbsp; |</span>
           <ul>
             <li><a href="#" target="_blank">Twitter</a></li>
             <li><a href="#" target="_blank">Youtube</a></li>

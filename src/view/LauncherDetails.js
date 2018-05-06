@@ -64,7 +64,6 @@ class LauncherDetails extends React.Component {
     }
   }
 
-
   componentDidMount() {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
@@ -82,19 +81,13 @@ class LauncherDetails extends React.Component {
 
   render() {
 
-    const btnStyle = {
-      color: 'blue',
-      width: '100px',
-      height: '50px'
-    };
-
     return (
       <div id={"content"}>
         <div className={`col-6 content__left rocket`}>
           <section>
             <div className="rocket__start_date">{this.props.launch.launch_date_utc}</div>
             <div className="rocket__name">{this.props.launchSite.full_name}</div>
-            <div className="rocket__launch">{this.props.launch.launch_date_utc}<div className={`timer`}>hours:  minutes: {this.state.time.m} seconds: {this.state.time.s}</div></div>
+            <div className="rocket__launch"><div className={`timer`}>{this.state.time.d} DAYS {this.state.time.h} HRS {this.state.time.m} MINS TO START</div></div>
           </section>
 
           <img src={this.props.launch.links.mission_patch_small} alt={"logo"} className="rocket-logo"/>
