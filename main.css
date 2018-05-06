@@ -1,24 +1,178 @@
-.welcome {
-  color: #0f0f0f;
-  font-size: 3rem;
-  text-align: center;
-  -webkit-transform: rotate(-5deg);
-          transform: rotate(-5deg); }
-  .welcome .username {
-    font-weight: normal; }
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#content {
+  padding: 0 20px; }
 
-html {
-  font-size: 10px; }
+.col-6 {
+  width: 50%;
+  float: left; }
+
+.col-12 {
+  width: 100%;
+  float: left; }
+
+.rocket .rocket__name {
+  font-size: 36px;
+  letter-spacing: 1.5px; }
+
+section {
+  margin-top: 40px;
+  margin-bottom: 20px; }
+
+.section__title {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ccac5b;
+  border-bottom: 1px solid #ccac5b;
+  letter-spacing: 9px;
+  padding-bottom: 10px; }
+
+.section__desc {
+  font-size: 14px;
+  padding-top: 20px;
+  overflow: overlay; }
+
+.section__desc__list {
+  padding-left: 20px;
+  padding-bottom: 20px;
+  border-left: 1px dashed #a7a9ac; }
+  .section__desc__list .section__desc__list__name {
+    color: #a7a9ac;
+    text-transform: uppercase; }
+  .section__desc__list .section__desc__list__value {
+    text-transform: uppercase;
+    padding-left: 10px; }
+
+.section__desc_full {
+  padding-top: 20px; }
+
+.links {
+  background: url(/rocket.png) top center;
+  background-size: cover;
+  font-size: 20px;
+  color: #ffffff;
+  width: 100%;
+  height: auto;
+  clear: both; }
+
+.links__title {
+  padding-top: 450px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 36px;
+  letter-spacing: 18px; }
+
+.links__title--center {
+  text-align: center; }
+
+.links__lists {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  margin-bottom: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .links__lists li {
+    border: 1px solid #ffffff;
+    border-radius: 30px;
+    padding: 10px 40px;
+    font-size: 14px;
+    letter-spacing: 9px;
+    margin: 0 20px 0 0; }
+    .links__lists li:hover {
+      color: red;
+      transfrom: translateY(-10px);
+      -webkit-transition: all 1s;
+      -o-transition: all 1s;
+      transition: all 1s; }
+    .links__lists li a {
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none; }
+
+.links__list--no-list-style {
+  list-style: none; }
+
+#header {
+  background: #0f1112;
+  height: 50px;
+  width: 100%; }
+
+.header__logo {
+  padding-top: 5px;
+  height: 35px;
+  margin: 0 auto;
+  text-align: center;
+  display: block; }
+
+.header__btn-back {
+  color: #ffffff;
+  float: left;
+  cursor: pointer;
+  text-transform: uppercase; }
+  .header__btn-back::before {
+    content: '<-';
+    display: block;
+    float: left;
+    padding-right: 5px;
+    margin-left: 10px; }
+
+#footer {
+  color: #ffffff;
+  height: 80px;
+  background: #0f1112;
+  font-family: 'Open-sans';
+  font-size: 14px; }
+
+.footer__menu {
+  color: #ffffff;
+  float: left;
+  margin-top: 30px;
+  margin-left: 50px; }
+  .footer__menu span {
+    color: #a7a9ac;
+    padding-left: 10px;
+    text-transform: uppercase; }
+  .footer__menu ul {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    list-style: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: 0;
+    padding: 0; }
+    .footer__menu ul li {
+      padding-left: 20px; }
+    .footer__menu ul a {
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase; }
+
+.company {
+  color: #a7a9ac;
+  float: right;
+  margin-top: 30px;
+  padding-right: 50px;
+  text-transform: uppercase; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: "Open Sans";
+    font-family-font-size: 14px; }
 
-main {
-  width: 80%;
-  margin: 4rem auto 0;
-  padding: 2rem;
-  border-radius: 1rem;
-  background: #d7d7d7; }
+main * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Open Sans'; }
 
 
 /*# sourceMappingURL=main.css.map*/
