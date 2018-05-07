@@ -2,8 +2,8 @@ import { hot } from 'react-hot-loader';
 import * as React from 'react';
 import './styles/theme.sass';
 
-import LauncherDetails from './view/LauncherDetails';
 import Header from './view/Header';
+import LauncherDetails from './view/LauncherDetails';
 import Footer from './view/Footer';
 
 import launch from './assets/launch.json';
