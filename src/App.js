@@ -1,10 +1,10 @@
 import { hot } from 'react-hot-loader';
 import * as React from 'react';
+import './styles/theme.sass';
+
 import LauncherDetails from './view/LauncherDetails';
 import Header from './view/Header';
 import Footer from './view/Footer';
-
-import './styles/theme.sass';
 
 import launch from './assets/launch.json';
 import launchSite from './assets/launch_site.json';
