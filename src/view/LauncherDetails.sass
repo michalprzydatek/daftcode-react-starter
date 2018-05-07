@@ -33,7 +33,7 @@
 		letter-spacing: $basic_ls
 
 section
-	margin-top: 40px
+	margin-top: 70px
 	margin-bottom: 20px
 
 .section__title
@@ -48,6 +48,7 @@ section
 	font-size: 14px
 	padding-top: 20px
 	overflow: overlay
+	letter-spacing: $basic_bold_ls
 
 .section__desc__list
 	padding-left: 20px
@@ -99,11 +100,12 @@ section
 		font-size: $basic
 		letter-spacing: $basic_ls
 		margin: 0 20px 0 0
+		&:hover
+			transform: translateY(-2px)
+			transition: all 0.4s
 
 		&:hover a
 			color: $desert
-			transfrom: translateY(-10px)
-			transition: all 0.4s
 
 		a
 			text-transform: uppercase

@@ -20,18 +20,21 @@
 	float: left
 	cursor: pointer
 	text-transform: uppercase
-	padding-left: 5px
-	margin: 12px 0 0 20px
+	margin: 14px 0 0 0
 	letter-spacing: 9px
-
-.header__arrow
-	margin-left: 10px 
-  
-	&::after
+	&::before
 		content: ' '
+		float: left
 		display: block
 		border-bottom: 1px solid $desert
 		width: 30px
-		height: 10px
-		margin: 12px 0 0 0
-		
+		height: 9px
+		margin: 0 10px 0 0
+	&:hover
+		transform: translateX(-5px)
+		transition: all 0.4s
+
+.header__arrow
+	margin-left: 30px
+	margin-top: 18px
+	float: left

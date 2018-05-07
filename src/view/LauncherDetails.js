@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import logo from '../assets/space_x_logo_bw_centered.png';
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+import differenceInSeconds from 'date-fns/difference_in_seconds'
 
 import './LauncherDetails.sass';
 
@@ -8,9 +10,14 @@ class LauncherDetails extends React.Component {
   constructor(props){
     super(props);
 
-    const { from, to, launch } = this.props;
-
-    this.state = { time: {}, seconds: from, to: 0, launch: launch };
+    const { launch } = this.props;
+	const rocketStart = format(  new Date(this.props.launch.launch_date_local), 'DD MMMM YYYY' );
+	const differenceTimeToLaunch = differenceInSeconds(
+		new Date(rocketStart),
+		new Date()
+	)
+	
+    this.state = { time: {}, seconds: differenceTimeToLaunch, launch: launch, today : format(new Date(), 'DD MM YYYY'), rocketStart: rocketStart, differenceTimeToLaunch:	differenceTimeToLaunch };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
@@ -18,10 +25,11 @@ class LauncherDetails extends React.Component {
   }
 
   secondsToTime(secs){
-    let days = Math.floor(secs / (86400))
-
-    let divisor_for_hours= secs % (86400);
-    let hours = Math.floor(divisor_for_hours / 60);
+	secs = Math.round(secs);
+	let days = Math.floor(secs / (60 * 60 * 24));
+	let divisor_for_hours = secs % (60 * 60 * 24);
+	
+    let hours = Math.floor(divisor_for_hours / (60 * 60));
 
     let divisor_for_minutes = secs % (60 * 60);
     let minutes = Math.floor(divisor_for_minutes / 60);
@@ -80,14 +88,14 @@ class LauncherDetails extends React.Component {
 
 
   render() {
-
+	  
     return (
       <div id={"content"}>
         <div className={`col-6 content__left rocket`}>
           <section>
-            <div className="rocket__start_date">{this.props.launch.launch_date_utc}</div>
+            <div className="rocket__start_date">{this.state.rocketStart}</div>
             <div className="rocket__name">{this.props.launchSite.full_name}</div>
-            <div className="rocket__launch"><div className={`timer`}>{this.state.time.d} DAYS {this.state.time.h} HRS {this.state.time.m} MINS TO START</div></div>
+            <div className="rocket__launch"><div className={`timer`}>{this.state.time.d} DAYS {this.state.time.h} HRS {this.state.time.m} MINS {this.state.time.s} SEC TO START</div></div>
           </section>
 
           <img src={this.props.launch.links.mission_patch_small} alt={"logo"} className="rocket-logo"/>
