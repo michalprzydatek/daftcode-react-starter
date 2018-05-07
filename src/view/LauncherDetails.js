@@ -20,7 +20,6 @@ class LauncherDetails extends React.Component {
     this.state = { time: {}, seconds: differenceTimeToLaunch, launch: launch, today : format(new Date(), 'DD MM YYYY'), rocketStart: rocketStart, differenceTimeToLaunch:	differenceTimeToLaunch };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
-    this.resetTimer = this.resetTimer.bind(this);
     this.countDown = this.countDown.bind(this);
   }
 
@@ -52,11 +51,6 @@ class LauncherDetails extends React.Component {
       this.timer = setInterval(this.countDown, 1000);
     //}
   }
-  resetTimer() {
-    console.log('reset timer');
-    clearInterval(this.timer);
-
-  }
 
   countDown(){
     let seconds = this.state.seconds - 1;
@@ -75,6 +69,7 @@ class LauncherDetails extends React.Component {
   componentDidMount() {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
+	this.startTimer();
     this.getInitialState()
   }
 
