@@ -10,6 +10,8 @@ import launch from './assets/launch.json';
 import launchSite from './assets/launch_site.json';
 import rocket from './assets/rocket.json';
 
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+
 class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
@@ -19,7 +21,6 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
           launch={launch}
           rocket={rocket}
           launchSite={launchSite}
-          from={1000000}
         />
         <Footer username="DaftCoder" />
 
