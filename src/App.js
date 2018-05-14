@@ -4,9 +4,6 @@ import './styles/theme.sass';
 
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 
-import Header from './view/Header';
-import Footer from './view/Footer';
-
 import launch from './assets/launch.json';
 import launchSite from './assets/launch_site.json';
 import rocket from './assets/rocket.json';
@@ -65,7 +62,6 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
     return (
       <main>
         {this.activeViewComponent}
-        <Footer />
       </main>
     );
   }
