@@ -5,8 +5,10 @@ import './FilterButtons.sass';
 
 class FilterButtons extends React.Component {
   static propTypes = {
-    options: PropTypes.array.isRequired,
-  }
+    options: PropTypes.array,
+    allOptions: PropTypes.array,
+    onChange: PropTypes.func
+  };
 
 
   state = {
@@ -14,17 +16,14 @@ class FilterButtons extends React.Component {
   };
 
   render() {
-
-  const { options } = this.props;
+    const { options, allOptions } = this.props;
+    const { onChange } = this.props;
 
     return (
       <div id={"filters"}>
-      {this.props.options}
-          <ul>
-            <li className={"filter active"}><a href={"#"}>All rockets</a></li>
-            <li className={"filter"}><a href={"#"}>Falcon9</a></li>
-            <li className={"filter"}><a href={"#"}>Falcon Heavy</a></li>
-            <li className={"filter"}><a href={"#"}>Dragon</a></li>
+          <ul onChange="this.props.onChange" >
+            {this.props.allOptions}
+            {this.props.options}
           </ul>
       </div>
     );

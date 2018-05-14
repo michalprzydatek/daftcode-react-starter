@@ -7,21 +7,16 @@ import './Header.sass';
 
 class Header extends React.Component {
   static propTypes = {
-    username: PropTypes.string.isRequired,
+    onBackClick: PropTypes.func
   }
 
-  state = {
-    welcomeText: 'Hello'
-  };
-
   render() {
-    const { welcomeText } = this.state;
-    const { username } = this.props;
+    const { onBackClick } = this.props;
 
     return (
       <div id={"header"}>
           <img src={arrow} alt={"arrow"} className={"header__arrow"} /> 
-          <div className="header__btn-back">go back</div>
+          <div className="header__btn-back" onClick={onBackClick}>go back</div>
           <img src={logo} alt={"logo"} className={"header__logo"} /> 
       </div>
     );

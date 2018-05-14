@@ -10,19 +10,23 @@ import launchSite from '../assets/launch_site.json';
 import rocket from '../assets/rocket.json';
 import launches from '../assets/launches.json';
 
+
+import Header from '../view/Header';
+import Footer from '../view/Footer';
+
 import './LaunchDetails.sass';
 
 class LaunchDetails extends React.Component {
   constructor(props){
     super(props);
 
-    const { launch } = this.props;
-	const rocketStart = format(  new Date(this.props.launch.launch_date_local), 'DD MMMM YYYY' );
-	const differenceTimeToLaunch = differenceInSeconds(
-		new Date(rocketStart),
-		new Date()
-	)
-
+    const { launch, onBackClick } = this.props;
+	  const rocketStart = format(  new Date(this.props.launch.launch_date_local), 'DD MMMM YYYY' );
+	  const differenceTimeToLaunch = differenceInSeconds(
+		  new Date(rocketStart),
+		  new Date()
+    );
+  
     this.state = { time: {}, seconds: differenceTimeToLaunch, launch: launch, today : format(new Date(), 'DD MM YYYY'), rocketStart: rocketStart, differenceTimeToLaunch:	differenceTimeToLaunch };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -75,7 +79,7 @@ class LaunchDetails extends React.Component {
   componentDidMount() {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
-	this.startTimer();
+	  this.startTimer();
     this.getInitialState()
   }
 
@@ -87,10 +91,11 @@ class LaunchDetails extends React.Component {
     return {data: this.launch};
   }
 
-
   render() {
 
     return (
+      <div>
+      <Header onBackClick={this.props.onBackClick} />
       <div id={"content"}>
         <div className={`col-6 content__left rocket`}>
           <section>
@@ -181,6 +186,8 @@ class LaunchDetails extends React.Component {
             <li><a href={this.props.launch.links.video_link} target="_blank">Mission video</a></li>
           </ul>
         </div>
+      </div>
+      <Footer/>
       </div>
     );
   }
