@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import logo from '../assets/space_x_logo_bw_centered.png';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 import differenceInSeconds from 'date-fns/difference_in_seconds'
 
-import './LauncherDetails.sass';
+import launch from '../assets/launch.json';
+import launchSite from '../assets/launch_site.json';
+import rocket from '../assets/rocket.json';
+import launches from '../assets/launches.json';
 
-class LauncherDetails extends React.Component {
+import './LaunchDetails.sass';
+
+class LaunchDetails extends React.Component {
   constructor(props){
     super(props);
 
@@ -16,7 +22,7 @@ class LauncherDetails extends React.Component {
 		new Date(rocketStart),
 		new Date()
 	)
-	
+
     this.state = { time: {}, seconds: differenceTimeToLaunch, launch: launch, today : format(new Date(), 'DD MM YYYY'), rocketStart: rocketStart, differenceTimeToLaunch:	differenceTimeToLaunch };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -27,7 +33,7 @@ class LauncherDetails extends React.Component {
 	secs = Math.round(secs);
 	let days = Math.floor(secs / (60 * 60 * 24));
 	let divisor_for_hours = secs % (60 * 60 * 24);
-	
+
     let hours = Math.floor(divisor_for_hours / (60 * 60));
 
     let divisor_for_minutes = secs % (60 * 60);
@@ -83,7 +89,7 @@ class LauncherDetails extends React.Component {
 
 
   render() {
-	  
+
     return (
       <div id={"content"}>
         <div className={`col-6 content__left rocket`}>
@@ -180,4 +186,4 @@ class LauncherDetails extends React.Component {
   }
 }
 
-export default LauncherDetails;
+export default LaunchDetails;

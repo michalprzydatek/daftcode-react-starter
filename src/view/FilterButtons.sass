@@ -1,0 +1,38 @@
+@import "~styles/variables"  // '~' informs sass-loader that is not relative path
+
+#filters
+	margin: 0 auto
+	margin-bottom: 100px
+	margin-top: 50px
+
+	ul
+		display: flex
+		justify-content: center
+
+		li
+			border: 1px solid $cool-grey
+			border-radius: 20px
+			padding: 8px 30px
+			margin: 0 20px 0 0
+			color: $cool-grey
+			list-style: none
+
+			&:hover
+				border: 1px solid $white
+
+			&:hover a
+				color: $white
+
+			a
+				text-transform: uppercase
+				color: $cool-grey
+				text-decoration: none
+				letter-spacing: 1px
+			
+		li.active
+			border: 1px solid $white
+			box-shadow: white inset 0px 0px 10px 3px
+
+			a
+				color: $white
+
