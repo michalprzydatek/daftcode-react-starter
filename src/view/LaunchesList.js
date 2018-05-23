@@ -8,7 +8,7 @@ import differenceInSeconds from 'date-fns/difference_in_seconds';
 
 import logo from '../assets/space_x_logo_bw_centered.png';
 
-import launches from '../assets/launches.json';
+//import launches from '../assets/launches.json';
 
 import FilterButtons from './FilterButtons.js';
 import Footer from '../view/Footer';
@@ -17,7 +17,7 @@ class LaunchesList extends React.Component {
   constructor(props){
     super(props);
     const { launch, launchSite, rocket , launches, onLaunchClick, onBackClick } = this.props;
-    this.state = { availableRocketList: '', rocketNameFilter: 'all'};
+    this.state = { availableRocketList: '', rocketNameFilter: 'all', isLoading:false};
   }
 
   get allRocketNames() {  
@@ -25,9 +25,22 @@ class LaunchesList extends React.Component {
   }
 
   get availableRocketNames() {
-    const {launches} = this.props;
     let array = [];
-    const rocketNames = this.props.launches.map((e) => array.push(e.rocket.rocket_name));
+
+    fetch('https://api.spacexdata.com/v2/launches')
+     .then((response) => response.json())
+     .then((data) => {
+       return data.map((e)=> array.push(e.rocket.rocket_name));
+     })
+     .catch((error) => {
+       console.error(error);
+     });
+    
+    
+    
+    console.log('array',array);
+    
+    //const rocketNames = names.map((e) => array.push(e.rocket.rocket_name));
     const uniqueArray = array.filter(function(item, pos) {
           return array.indexOf(item) == pos;
     });
@@ -39,11 +52,23 @@ class LaunchesList extends React.Component {
   }
   
   get availableRocketList() {
-    const {launches} = this.props;
     const {rocketNameFilter} = this.state;
+    let fetch_data = '';
+    let data_f='';
+    let dataFiltred_f ='';
 
     let filtred = this.state.rocketNameFilter;
-    const data = launches.map((e) =>
+
+    fetch('https://api.spacexdata.com/v2/launches')
+     .then((response) => response.json())
+     .then((data) => {
+        const launches = data;
+        console.log(launches);
+        this.setState({ launches:launches });
+        this.setState({ isLoading:false });
+        console.log('this.state.launches',this.state.launches);
+        
+        data_f = this.state.launches.map((e) =>
             <li>
               <div className={"rockets__content"}>
                 <div className={"rockets__content__date"}>{format(  new Date(e.launch_date_local), 'DD MMMM YYYY' )}</div>
@@ -56,35 +81,42 @@ class LaunchesList extends React.Component {
               </div>
             </li>
     )
-    const dataFiltred = launches.filter( launch => launch.rocket.rocket_name === rocketNameFilter ).map((e) =>
-            <li>
-              <div className={"rockets__content"}>
-                <div className={"rockets__content__date"}>{format(  new Date(e.launch_date_local), 'DD MMMM YYYY' )}</div>
-                <div className={"rockets__content__details"}>
-                  <div className={"rockets__details__lab-name"}>Rocket: </div>
-                  <div className={"rockets__details__name"}><a href="#" onClick={this.props.onLaunchClick}>{e.rocket.rocket_name}</a></div>
-                  <div className={"rockets__details__lab-site"}>|&nbsp;&nbsp; Launch Site: </div>
-                  <div className={"rockets__details__site"}>{e.launch_site.site_name_long}</div>
+    
+      dataFiltred_f = this.state.launches.filter( launch => launch.rocket.rocket_name === rocketNameFilter ).map((e) =>
+              <li>
+                <div className={"rockets__content"}>
+                  <div className={"rockets__content__date"}>{format(  new Date(e.launch_date_local), 'DD MMMM YYYY' )}</div>
+                  <div className={"rockets__content__details"}>
+                    <div className={"rockets__details__lab-name"}>Rocket: </div>
+                    <div className={"rockets__details__name"}><a href="#" onClick={this.props.onLaunchClick}>{e.rocket.rocket_name}</a></div>
+                    <div className={"rockets__details__lab-site"}>|&nbsp;&nbsp; Launch Site: </div>
+                    <div className={"rockets__details__site"}>{e.launch_site.site_name_long}</div>
+                  </div>
                 </div>
-              </div>
-            </li>   
-    )
+              </li>   
+      )
+      })
+     .catch((error) => {
+       console.error(error);
+     });
 
-    return rocketNameFilter === 'all' ? data : dataFiltred ;
+     
+    return rocketNameFilter === 'all' ? data_f : dataFiltred_f ;
   }
 
   get filteredLaunches(){
     const {rocketNameFilter} = this.state;
-    const {launches} = this.props;
+    const launches = this.getData('https://api.spacexdata.com/v2/launches');
 
     if(!rocketNameFilter) return launches;
 
-    return launches.filter( launch => launch.rocket.rocket_name === rocketNameFilter );
+    //return launches.filter( launch => launch.rocket.rocket_name === rocketNameFilter );
+    return this.getData('https://api.spacexdata.com/v2/launches?rocket_id='+rocketNameFilter);
   }
 
   doToDetails(){
     const {rocketNameFilter} = this.state;
-    const {launches} = this.props;
+    const launches = this.getData('https://api.spacexdata.com/v2/launches');
 
     if(!rocketNameFilter) return launches;
 
@@ -97,8 +129,19 @@ class LaunchesList extends React.Component {
     return false;
   }
 
+getData(url) {
+   return fetch(url)
+   .then((response) => response.json())
+   .then((responseJson) => {
+     return responseJson;
+   })
+   .catch((error) => {
+     console.error(error);
+   });
+}
   componentDidMount() {
-    this.getInitialState()
+    this.setState({isLoading: true});
+    this.getInitialState();
   }
 
   componentWillUnmount() {
@@ -110,7 +153,13 @@ class LaunchesList extends React.Component {
   }
 
 
+
   render() {
+    const {isLoading} = this.state;
+
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
 
     return (
         
