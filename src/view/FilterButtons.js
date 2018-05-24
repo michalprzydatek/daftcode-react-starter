@@ -1,29 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './FilterButtons.sass';
 
 class FilterButtons extends React.Component {
-  static propTypes = {
-    options: PropTypes.array,
-    allOptions: PropTypes.array,
-    onChange: PropTypes.func
-  };
+constructor(props) {
+    super(props);
+    this.state = {
+      value: "",
+    };
+};
 
+handleClick(value, event) {
+  this.props.onChange(value);
+}
 
-  state = {
-    
-  };
-
-  render() {
-    const { options, allOptions } = this.props;
-    const { onChange } = this.props;
+render() {
+    const filterButtons = this.props.options.map(option =>
+      <li><a href='#' className={'filterButtons__button'} onClick={this.handleClick(option,'e')} > { option } </a> </li>
+    );
 
     return (
       <div id={"filters"}>
-          <ul onChange="this.props.onChange" >
-            {this.props.allOptions}
-            {this.props.options}
+          <ul>
+          <li className={"active"} onClick={(x)=>{this.handleClick(' ',e)}}><a href={"#"}>All rockets</a></li>
+            {filterButtons}
           </ul>
       </div>
     );
